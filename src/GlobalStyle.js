@@ -3,10 +3,10 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
   :root {
     /* COLORS */
-    --primaryBlue: hsla(235, 86, 62, 1);
-    --textColor: hsla(264, 7, 29, 1);
-    --secondaryTextColor: hsla(264, 7, 29, 0.6);
-    --linkColor: hsla(235, 60, 54, 1);
+    --primaryBlue: hsla(235, 86%, 62%, 1);
+    --textColor: hsla(264, 7%, 29%, 1);
+    --secondaryTextColor: hsla(264, 7%, 29%, 0.6);
+    --linkColor: hsla(235, 60%, 54%, 1);
 
     /* TYPOGRAPHY */
     --labelFontSize: 1.4rem;
@@ -23,19 +23,24 @@ export default createGlobalStyle`
   }
   body {
     font-family: 'Noto Sans', sans-serif;
+    color: var(--textColor);
   }
   h1 {
     font-size: 2.2rem;
+    font-weight: 500;
     line-height: 2.8rem;
   }
   h2 {
     font-size: 1.6rem;
+    font-weight: 500;
     line-height: 2.4rem;
     letter-spacing: 0.15rem;
   }
   h3 {
     font-size: 1.4rem;
+    font-weight: 500;
     line-height: 2rem;
     letter-spacing: 0.1rem;
   }
+
 `;

@@ -1,7 +1,8 @@
 import React from 'react';
-import { SearchResultsPage, Header, Label } from './style';
+import { SearchResultsPage, Header, Label, Results } from './style';
 import { BiChevronRight } from 'react-icons/bi';
 import Sort from '../../components/sort'
+import ResultCard from './ResultCard'
 
 const SearchResults = () => {
   return (
@@ -12,8 +13,14 @@ const SearchResults = () => {
           <BiChevronRight />
           <span>93313</span>
         </Label>
-        <Sort/>
+        <Sort />
       </Header>
+      <Results>
+        <ResultCard />
+        <ResultCard />
+        <ResultCard />
+        <ResultCard />
+      </Results>
     </SearchResultsPage>
   );
 };

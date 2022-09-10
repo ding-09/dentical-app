@@ -27,18 +27,18 @@ export default createGlobalStyle`
   }
   h1 {
     font-size: 2.2rem;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 2.8rem;
   }
   h2 {
     font-size: 1.6rem;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 2.4rem;
     letter-spacing: 0.15rem;
   }
   h3 {
     font-size: 1.4rem;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 2rem;
     letter-spacing: 0.1rem;
   }

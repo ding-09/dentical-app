@@ -1,15 +1,13 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-export const SearchResultsPage = styled.section`
-  padding: 2.8rem 1.6rem;
-`
+export const SearchResultsPage = styled.section``;
 
 export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2.8rem;
-`
+  padding: 2.8rem 1.6rem 0.8rem;
+`;
 
 export const Label = styled.p`
   display: flex;
@@ -19,4 +17,22 @@ export const Label = styled.p`
     font-size: 1.6rem;
     padding-top: 0.1rem;
   }
-`
+`;
+
+export const Results = styled.section``;
+
+export const Article = styled.article`
+  padding: 1.6rem;
+  border-bottom: 1px solid hsla(264, 7%, 20%, 0.2);
+  p {
+    color: var(--secondaryTextColor);
+    font-size: var(--labelFontSize);
+    font-weight: 500;
+    line-height: var(--labelLine);
+  }
+  .rating-reviews {
+    display: flex;
+    align-items: center;
+    
+  }
+`;

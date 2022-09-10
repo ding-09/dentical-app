@@ -4,9 +4,9 @@ export default createGlobalStyle`
   :root {
     /* COLORS */
     --primaryBlue: hsla(235, 86%, 62%, 1);
+    --secondaryBlue: hsla(235, 60%, 54%, 1);
     --textColor: hsla(264, 7%, 29%, 1);
     --secondaryTextColor: hsla(264, 7%, 29%, 0.6);
-    --linkColor: hsla(235, 60%, 54%, 1);
 
     /* TYPOGRAPHY */
     --labelFontSize: 1.4rem;
@@ -42,5 +42,12 @@ export default createGlobalStyle`
     line-height: 2rem;
     letter-spacing: 0.1rem;
   }
-
+  p {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.1rem;
+  }
+  a {
+    color: var(--secondaryBlue);
+  }
 `;

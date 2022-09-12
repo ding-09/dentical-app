@@ -77,5 +77,9 @@ export const StyledReviewCard = styled.article`
       margin-left: 0;
       margin-bottom: 0.8rem;
     }
+    .date {
+      font-size: 1.2rem;
+      color: var(--secondaryTextColor);
+    }
   }
 `;

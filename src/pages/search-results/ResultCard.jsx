@@ -6,11 +6,11 @@ const ResultCard = () => {
   return (
     <Article>
       <h2>East Town Family Dentistry</h2>
-      <p className='rating-reviews'>
+      <div className='rating-reviews'>
         <span>4.6</span>
         <StarRating/>
         <span>(109)</span>
-      </p>
+      </div>
       <p className='address'>2010 Niles Street</p>
       <p className='phone'>(661) 323-1927</p>
     </Article>

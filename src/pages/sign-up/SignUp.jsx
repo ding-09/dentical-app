@@ -9,7 +9,7 @@ const SignUp = () => {
     <SignUpPage>
       <Wrapper>
         <h2>Sign up</h2>
-        <Form inputs={inputs} btnText='Sign in' />
+        <Form inputs={inputs} btnText='Sign up' />
       </Wrapper>
     </SignUpPage>
   );

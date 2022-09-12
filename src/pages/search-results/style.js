@@ -24,9 +24,14 @@ export const Results = styled.section``;
 export const Article = styled.article`
   padding: 1.6rem;
   border-bottom: 1px solid hsla(264, 7%, 20%, 0.2);
- 
+  
   .rating-reviews {
     display: flex;
     align-items: center;
+  }
+  .rating-reviews, p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--secondaryTextColor);
   }
 `;

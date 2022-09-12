@@ -5,7 +5,7 @@ const Form = ({ inputs, btnText }) => {
   return (
     <StyledForm>
       {inputs.map((input) => (
-        <div className='input-group'>
+        <div className='input-group' key={input}>
           <label htmlFor={input}>{input}</label>
           <input type={input} name={input} id={input} />
         </div>

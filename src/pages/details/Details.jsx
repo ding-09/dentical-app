@@ -14,11 +14,11 @@ const Details = () => {
     <DetailsPage>
       <Header>
         <h2>East Town Family Dentistry</h2>
-        <p className='rating-reviews'>
+        <div className='rating-reviews'>
           <span>4.6</span>
           <StarRating />
           <a href='#reviews'>109 reviews</a>
-        </p>
+        </div>
       </Header>
       <LocationAndHours>
         <h3>Location and hours</h3>

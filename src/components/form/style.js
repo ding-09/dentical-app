@@ -9,6 +9,7 @@ export const StyledForm = styled.form`
       margin-bottom: 1rem;
       font-size: 1.2rem;
       font-weight: 500;
+      text-transform: capitalize;
     }
     input {
       min-height: 4.5rem;
@@ -27,6 +28,7 @@ export const StyledForm = styled.form`
     margin-bottom: 1.2rem;
     background-color: var(--secondaryBlue);
     color: #fff;
+    letter-spacing: 0.1rem;
     border: none;
     border-radius: 0.5rem;
   }

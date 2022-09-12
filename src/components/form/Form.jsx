@@ -1,23 +1,27 @@
 import React from 'react';
 import { StyledForm } from './style';
 
-const Form = () => {
+const Form = ({ inputs, btnText }) => {
   return (
     <StyledForm>
-      <div className='input-group'>
-        <label htmlFor='email'>Email</label>
-        <input type='email' name='email' id='email' />
-      </div>
-      <div className='input-group'>
-        <label htmlFor='password'>Password</label>
-        <input type='password' name='password' id='password' />
-      </div>
+      {inputs.map((input) => (
+        <div className='input-group'>
+          <label htmlFor={input}>{input}</label>
+          <input type={input} name={input} id={input} />
+        </div>
+      ))}
       <button>
-        <span>Sign In</span>
+        <span>{btnText}</span>
       </button>
-      <p>
-        <a href='signup'>Sign up</a> for an account
-      </p>
+      {btnText.toLowerCase() === 'sign in' ? (
+        <p>
+          <a href='signup'>Sign up</a> for an account{' '}
+        </p>
+      ) : (
+        <p>
+          <a href='signin'>Sign in</a> to your account
+        </p>
+      )}
     </StyledForm>
   );
 };

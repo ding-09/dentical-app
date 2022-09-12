@@ -7,6 +7,7 @@ export default createGlobalStyle`
     --secondaryBlue: hsla(235, 60%, 54%, 1);
     --textColor: hsla(264, 7%, 29%, 1);
     --secondaryTextColor: hsla(264, 7%, 29%, 0.6);
+    --grayAccentColor: hsla(264, 7%, 20%, 0.2);
 
     /* TYPOGRAPHY */
     --labelFontSize: 1.4rem;

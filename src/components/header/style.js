@@ -17,4 +17,7 @@ export const StyledHeader = styled.header`
   svg {
     font-size: 2rem;
   }
+  a {
+    text-decoration: none;
+  }
 `

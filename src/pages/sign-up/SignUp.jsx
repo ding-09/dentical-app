@@ -3,13 +3,13 @@ import { SignUpPage, Wrapper } from './style';
 import Form from '../../components/form';
 
 const SignUp = () => {
-  const inputs = ['email', 'full name', 'password'];
-
+  const inputs = ['email', 'name', 'password'];
+  const action = 'signup'
   return (
     <SignUpPage>
       <Wrapper>
         <h2>Sign up</h2>
-        <Form inputs={inputs} btnText='Sign up' />
+        <Form inputs={inputs} btnText='Sign up' action={action}/>
       </Wrapper>
     </SignUpPage>
   );

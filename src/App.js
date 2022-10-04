@@ -9,6 +9,7 @@ import SearchResults from './pages/search-results';
 import Details from './pages/details';
 import SignIn from './pages/sign-in';
 import SignUp from './pages/sign-up';
+import Profile from './pages/profile';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path='details' element={<Details />} />
           <Route path='signin' element={<SignIn />} />
           <Route path='signup' element={<SignUp />} />
+          <Route path='profile' element={<Profile />} />
         </Routes>
       </main>
     </BrowserRouter>

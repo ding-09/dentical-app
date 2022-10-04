@@ -43,10 +43,15 @@ export default createGlobalStyle`
     line-height: 2rem;
     letter-spacing: 0.1rem;
   }
+  h4 {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    letter-spacing: 0.1rem;
+  }
   p {
     font-size: 1.2rem;
     line-height: 1.6rem;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.05rem;
   }
   a {
     color: var(--secondaryBlue);

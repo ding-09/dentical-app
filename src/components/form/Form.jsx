@@ -7,14 +7,14 @@ import { useForm } from '../../hooks/useForm';
 const Form = ({ inputs, btnText, action }) => {
   let navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post(`http://localhost:8000/${action}`, values)
-      .then((response) => {
-        console.log(response.data);
-      });
-    navigate('/profile');
+    try {
+      let res = await axios.post(`http://localhost:8000/${action}`, values)
+      console.log(res.data)
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   // dynamically initialize values with input fields name

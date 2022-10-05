@@ -25,5 +25,5 @@ export const Wrapper = styled.div`
 `;
 
 export const Headline = styled.h1`
-
+  line-height: 3.2rem;
 `;

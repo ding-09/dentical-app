@@ -25,7 +25,7 @@ export const StyledForm = styled.form`
   button {
     min-width: 100%;
     min-height: 4.8rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.6rem;
     background-color: var(--secondaryBlue);
     color: #fff;
     letter-spacing: 0.1rem;

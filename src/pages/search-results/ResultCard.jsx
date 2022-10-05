@@ -1,19 +1,20 @@
 import React from 'react';
-import { Article } from './style';
-import StarRating from '../../components/star-rating'
+import { StyledResultCard } from './style';
+import StarRating from '../../components/star-rating';
 
-const ResultCard = () => {
+const ResultCard = ({ searchResult }) => {
+  const { title, phone, address } = searchResult;
   return (
-    <Article>
-      <h2>East Town Family Dentistry</h2>
+    <StyledResultCard>
+      <h2>{title}</h2>
       <div className='rating-reviews'>
         <span>4.6</span>
-        <StarRating/>
+        <StarRating />
         <span>(109)</span>
       </div>
-      <p className='address'>2010 Niles Street</p>
-      <p className='phone'>(661) 323-1927</p>
-    </Article>
+      <p className='address'>{address.street}</p>
+      <p className='phone'>{phone}</p>
+    </StyledResultCard>
   );
 };
 

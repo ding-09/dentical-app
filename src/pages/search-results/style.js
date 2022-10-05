@@ -6,7 +6,7 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2.8rem 1.6rem 0.8rem;
+  padding: 2.4rem 1.6rem 0.8rem;
 `;
 
 export const Label = styled.p`
@@ -21,17 +21,19 @@ export const Label = styled.p`
 
 export const Results = styled.section``;
 
-export const Article = styled.article`
+export const StyledResultCard = styled.article`
   padding: 1.6rem;
   border-bottom: 1px solid hsla(264, 7%, 20%, 0.2);
-  
   .rating-reviews {
     display: flex;
     align-items: center;
+
   }
-  .rating-reviews, p {
+  .rating-reviews,
+  p {
     font-size: 1.2rem;
     font-weight: 500;
     color: var(--secondaryTextColor);
+    margin-bottom: 0.4rem;
   }
 `;

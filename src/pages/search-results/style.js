@@ -27,7 +27,6 @@ export const StyledResultCard = styled.article`
   .rating-reviews {
     display: flex;
     align-items: center;
-
   }
   .rating-reviews,
   p {
@@ -35,5 +34,9 @@ export const StyledResultCard = styled.article`
     font-weight: 500;
     color: var(--secondaryTextColor);
     margin-bottom: 0.4rem;
+  }
+  a {
+    text-decoration: none;
+    color: var(--textColor);
   }
 `;

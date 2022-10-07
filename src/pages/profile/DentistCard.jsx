@@ -2,7 +2,7 @@ import React from 'react';
 import { StyledDentistCard } from './style';
 import { MdBookmarkBorder, MdBookmark } from 'react-icons/md';
 
-const DentistCard = ({ bookmarked }) => {
+const DentistCard = ({ bookmarked = false }) => {
   return (
     <StyledDentistCard>
       <div className='dentist-info'>

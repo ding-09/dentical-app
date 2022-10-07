@@ -34,7 +34,7 @@ const Profile = () => {
   return (
     <ProfilePage>
       <Header>
-        <h2>Hi Tiffany D.</h2>
+        <h2>Hi {user.name}</h2>
         <Link to='/' onClick={handleSignOut}>
           Sign out
         </Link>

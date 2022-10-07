@@ -44,7 +44,7 @@ export const Header = styled.header`
     }
   }
   .phone {
-    font-size: var(--labelFontSize);
+    font-size: 1.3rem;
     color: var(--secondaryTextColor);
   }
 `;

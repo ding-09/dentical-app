@@ -56,4 +56,10 @@ export default createGlobalStyle`
   a {
     color: var(--secondaryBlue);
   }
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
 `;

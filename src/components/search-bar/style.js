@@ -4,7 +4,7 @@ export const StyledSearchBar = styled.form`
   position: relative;
   min-height: 5rem;
   margin: 2.4rem 0 1.2rem;
-  max-width: 85%;
+  max-width: 100%;
   input {
     border: 1px solid var(--grayAccentColor);
     border-radius: 1rem;

@@ -7,8 +7,8 @@ export const DetailsPage = styled.section`
 `;
 
 export const Header = styled.header`
-  margin-top: 2.8rem;
-  padding: 0 1.6rem 2rem;
+  margin-top: 2.4rem;
+  padding: 0 1.6rem 1.6rem;
   border-bottom: 1px solid var(--grayAccentColor);
   h2 {
     margin-bottom: 0.4rem;
@@ -17,8 +17,12 @@ export const Header = styled.header`
     display: flex;
     align-items: center;
     font-size: var(--labelFontSize);
-    font-weight: 500;
     line-height: var(--labelLine);
+    color: var(--secondaryTextColor);
+    margin-bottom: 0.4rem;
+  }
+  .phone {
+    font-size: var(--labelFontSize);
     color: var(--secondaryTextColor);
   }
 `;
@@ -29,10 +33,17 @@ export const LocationAndHours = styled.section`
     margin-bottom: 1.2rem;
   }
   .map {
-    min-width: 100%;
-    height: 25rem;
-    border: 1px solid lightgray;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1.6rem;
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 2.5rem;
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
   p {
     font-weight: 500;
@@ -48,6 +59,7 @@ export const RatingsAndReviews = styled.section`
     flex-direction: column;
     .stars {
       display: flex;
+      margin: 0.4rem 0;
     }
   }
   .overall-summary {

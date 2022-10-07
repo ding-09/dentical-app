@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import StarRating from '../../components/star-rating';
 import Sort from '../../components/sort';
 import ReviewCard from './ReviewCard';
+import { MdBookmarkBorder, MdBookmark } from 'react-icons/md';
 
 const Details = () => {
   const [searchResult, setSearchResult] = useState(null);
@@ -22,18 +23,32 @@ const Details = () => {
     setSearchResult(result.data.dentist);
   };
 
+  // fetch details on page load
   useEffect(() => {
     getData();
   }, []);
+
+  // manage bookmark state
+  const [bookmarked, setBookmarked] = useState(false);
+
+  const toggleBookmark = () => {
+    setBookmarked(!bookmarked);
+  };
 
   return searchResult ? (
     <DetailsPage>
       <Header>
         <h2>{searchResult.title}</h2>
-        <div className='rating-reviews'>
-          <span>4.6</span>
-          <StarRating />
-          <a href='#reviews'>109 reviews</a>
+        <div className='container'>
+          <div className='rating-reviews'>
+            <span>4.6</span>
+            <StarRating />
+            <a href='#reviews'>109 reviews</a>
+          </div>
+          <button className='bookmark' onClick={toggleBookmark}>
+            {bookmarked ? <MdBookmark /> : <MdBookmarkBorder />}
+            <span>{bookmarked ? 'Bookmarked' : 'Bookmark'}</span>
+          </button>
         </div>
         <span className='phone'>{searchResult.phone}</span>
       </Header>

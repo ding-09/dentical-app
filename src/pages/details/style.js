@@ -13,13 +13,35 @@ export const Header = styled.header`
   h2 {
     margin-bottom: 0.4rem;
   }
-  .rating-reviews {
+  .container {
     display: flex;
     align-items: center;
     font-size: var(--labelFontSize);
     line-height: var(--labelLine);
+  }
+  .rating-reviews {
+    display: flex;
+    align-items: center;
     color: var(--secondaryTextColor);
     margin-bottom: 0.4rem;
+    margin-right: 1rem;
+  }
+  .bookmark {
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.1rem;
+    cursor: pointer;
+    svg {
+      font-size: 1.6rem;
+      color: var(--secondaryBlue);
+      margin-right: 0.2rem;
+    }
+    span {
+      color: var(--textColor);
+      opacity: 0.8;
+    }
   }
   .phone {
     font-size: var(--labelFontSize);

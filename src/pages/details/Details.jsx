@@ -41,6 +41,7 @@ const Details = () => {
         <h3>Location and hours</h3>
         <div className='map'>
           <iframe
+            loading='lazy'
             frameBorder='0'
             style={{ border: '0' }}
             referrerPolicy='no-referrer-when-downgrade'

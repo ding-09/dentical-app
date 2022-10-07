@@ -15,12 +15,12 @@ const SearchResults = () => {
   // get zipcode from params
   let [searchParams, setSearchParams] = useSearchParams();
   let zipcode = searchParams.get('zipcode');
+  const baseUrl = 'http://localhost:8000/dentists';
+  let url = zipcode === null ? baseUrl : `${baseUrl}?zipcode=${zipcode}`;
 
   // fetch function
   const getResults = async () => {
-    const results = await axios.get(
-      `http://localhost:8000/dentists?zipcode=${zipcode}`
-    );
+    const results = await axios.get(url);
     setSearchResults(results.data);
   };
 
@@ -37,7 +37,7 @@ const SearchResults = () => {
         <Label>
           <span>Dentists</span>
           <BiChevronRight />
-          <span>{zipcode}</span>
+          <span>{zipcode ? zipcode : 'All'}</span>
         </Label>
         <Sort />
       </Header>

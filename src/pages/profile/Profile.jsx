@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ProfilePage,
   Header,
@@ -7,14 +7,37 @@ import {
   Reviews,
   SubHeader,
 } from './style';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import DentistCard from './DentistCard';
+import { useAuth } from '../../providers/AuthProvider';
+import { signOutUser } from '../../utils/user';
 
 const Profile = () => {
+  const navigate = useNavigate();
+
+  const { user, setUser } = useAuth();
+  // if not authorized, route user to signin page
+  useEffect(() => {
+    if (!user) {
+      navigate('/signin');
+    }
+  }, []);
+
+  const handleSignOut = () => {
+    // set user in context to null
+    setUser(null);
+
+    // remove user from localStorage
+    signOutUser();
+  };
+
   return (
     <ProfilePage>
       <Header>
         <h2>Hi Tiffany D.</h2>
+        <Link to='/' onClick={handleSignOut}>
+          Sign out
+        </Link>
       </Header>
       <RecentlyViewed>
         <SubHeader>
@@ -37,7 +60,7 @@ const Profile = () => {
           <h3>Reviews</h3>
           <Link to='reviews'>View all</Link>
         </SubHeader>
-        <h4 className="empty">There are currently no reviews</h4>
+        <h4 className='empty'>There are currently no reviews</h4>
       </Reviews>
     </ProfilePage>
   );

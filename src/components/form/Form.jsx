@@ -3,15 +3,25 @@ import { StyledForm } from './style';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
+import { useAuth } from '../../providers/AuthProvider';
+import { signInUser } from '../../utils/user';
 
 const Form = ({ inputs, btnText, action }) => {
   let navigate = useNavigate();
+  const { setUser } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await axios.post(`http://localhost:8000/${action}`, values)
-      console.log(res.data)
+      let res = await axios.post(`http://localhost:8000/${action}`, values);
+      // update context
+      setUser(res.data);
+
+      // update localStorage
+      signInUser(res.data.name, res.data.token);
+
+      // navigate to profile page
+      navigate('/profile');
     } catch (e) {
       console.log(e);
     }

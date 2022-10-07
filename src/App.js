@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import { useLoadScript } from '@react-google-maps/api';
 // components
 import Header from './components/header';
 
@@ -13,26 +13,33 @@ import SignUp from './pages/sign-up';
 import Profile from './pages/profile';
 
 // context
-import { AuthProvider } from './providers/AuthProvider';
+import { useAuth } from './providers/AuthProvider';
 
+// const libraries = ['places'];
 const App = () => {
+  // Google Maps API script loader
+  // const { isLoaded } = useLoadScript({
+  //   googleMapsApiKey: process.env.REACT_APP_API_KEY,
+  //   libraries,
+  // });
+
+  // use authContect
+  const auth = useAuth();
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Header />
-        <main>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='results' element={<SearchResults />} />
-            <Route path='dentists' element={<SearchResults />}/>
-            <Route path='dentist/:id' element={<Details />} />
-            <Route path='signin' element={<SignIn />} />
-            <Route path='signup' element={<SignUp />} />
-            <Route path='profile' element={<Profile />} />
-          </Routes>
-        </main>
-      </BrowserRouter>
-    </AuthProvider>
+    <BrowserRouter>
+      <Header />
+      <main>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='results' element={<SearchResults />} />
+          <Route path='dentists' element={<SearchResults />} />
+          <Route path='dentist/:id' element={<Details />} />
+          <Route path='signin' element={auth.user ? <Profile /> : <SignIn />} />
+          <Route path='signup' element={<SignUp />} />
+          <Route path='profile' element={<Profile />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 };
 

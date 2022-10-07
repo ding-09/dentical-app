@@ -8,7 +8,10 @@ import { StyledHeader } from './style';
 import { FiMenu } from 'react-icons/fi';
 import { FaUserCircle } from 'react-icons/fa';
 
+import { useAuth } from '../../providers/AuthProvider';
+
 const Header = () => {
+  const { user } = useAuth();
   return (
     <StyledHeader>
       <button>
@@ -17,7 +20,7 @@ const Header = () => {
       <Link to='/'>
         <h1>Dentical</h1>
       </Link>
-      <Link to='signin'>
+      <Link to={user ? 'profile' : 'signin'}>
         <FaUserCircle />
       </Link>
     </StyledHeader>

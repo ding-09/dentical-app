@@ -10,6 +10,11 @@ export const ProfilePage = styled.section`
 export const Header = styled.header`
   padding: 2.8rem 2.4rem 2rem;
   border-bottom: 1px solid var(--grayAccentColor);
+  display: flex;
+  justify-content: space-between;
+  a {
+    font-size: 1.4rem;
+  }
 `;
 
 export const SubHeader = styled.header`

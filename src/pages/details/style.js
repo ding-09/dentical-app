@@ -24,21 +24,28 @@ export const Header = styled.header`
     align-items: center;
     color: var(--secondaryTextColor);
     margin-bottom: 0.4rem;
-    margin-right: 1rem;
   }
-  .bookmark {
-    border: none;
-    background: none;
+  .bookmark-input-group {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding-bottom: 0.1rem;
+    margin-left: -0.2rem;
     cursor: pointer;
-    svg {
-      font-size: 1.6rem;
-      color: var(--secondaryBlue);
-      margin-right: 0.2rem;
+    input {
+      opacity: 0;
     }
-    span {
+    .bookmark-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      svg {
+        font-size: 1.6rem;
+        color: var(--secondaryBlue);
+        margin-right: 0.2rem;
+      }
+    }
+    label {
       color: var(--textColor);
       opacity: 0.8;
     }

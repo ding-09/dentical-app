@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   DetailsPage,
   Header,
@@ -6,11 +6,12 @@ import {
   RatingsAndReviews,
 } from './style';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import StarRating from '../../components/star-rating';
 import Sort from '../../components/sort';
 import ReviewCard from './ReviewCard';
 import { MdBookmarkBorder, MdBookmark } from 'react-icons/md';
+import { useAuth } from '../../providers/AuthProvider';
 import { useList } from '../../providers/ListProvider';
 
 const Details = () => {
@@ -25,6 +26,7 @@ const Details = () => {
 
   // use context
   const { addToList } = useList();
+  const { user } = useAuth();
 
   const getData = async () => {
     const result = await axios.get(`http://localhost:8000/dentist/${id}`);
@@ -42,22 +44,21 @@ const Details = () => {
     return () => {
       if (!loading) {
         addToList(searchResult);
+        if (bookmarkRef.current) {
+          storeBookmark(
+            searchResult._id,
+            searchResult.title,
+            searchResult.address
+          );
+        }
       }
     };
   }, [loading]);
 
-  // store bookmark after user leaves page
+  const bookmarkRef = useRef(bookmarked);
+
   useEffect(() => {
-    return () => {
-      if (!loading) {
-        console.log('storing bookmark...');
-        storeBookmark(
-          searchResult._id,
-          searchResult.title,
-          searchResult.address
-        );
-      }
-    };
+    bookmarkRef.current = bookmarked;
   }, [bookmarked]);
 
   const toggleBookmark = () => {
@@ -66,14 +67,27 @@ const Details = () => {
 
   const storeBookmark = async (id, title, address) => {
     // make a post request to backend
-    const res = await axios.post('http://localhost:8000/bookmark', {
-      id,
-      title,
-      address,
-    });
+    const res = await axios.post(
+      'http://localhost:8000/bookmark',
+      {
+        id,
+        title,
+        address,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
     return res;
     // to store bookmark in user
     // get current user token
+  };
+
+  const navigate = useNavigate();
+  const redirectToSignIn = () => {
+    navigate('/signin');
   };
 
   return searchResult ? (
@@ -87,17 +101,21 @@ const Details = () => {
             <a href='#reviews'>109 reviews</a>
           </div>
           {/* <button className='bookmark' onClick={toggleBookmark}>
-            {bookmarked ? <MdBookmark /> : <MdBookmarkBorder />}
             <span>{bookmarked ? 'Bookmarked' : 'Bookmark'}</span>
           </button> */}
-          <div className='bookmark-input'>
+          <div className='bookmark-input-group'>
             <input
               type='checkbox'
               name='bookmark'
               id='bookmark'
-              onChange={toggleBookmark}
+              onChange={user ? toggleBookmark : redirectToSignIn}
             />
-            <label htmlFor='bookmark'>Bookmark</label>
+            <span className='bookmark-icon'>
+              {bookmarked ? <MdBookmark /> : <MdBookmarkBorder />}
+            </span>
+            <label htmlFor='bookmark'>
+              {bookmarked ? 'Bookmarked' : 'Bookmark'}
+            </label>
           </div>
         </div>
         <span className='phone'>{searchResult.phone}</span>

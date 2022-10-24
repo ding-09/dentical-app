@@ -51,7 +51,7 @@ const Profile = () => {
               <h3>Recently viewed</h3>
               <Link to='recently-viewed'>View all</Link>
             </SubHeader>
-            {list.map((listItem) => (
+            {Object.values(list).map((listItem) => (
               <DentistCard listItem={listItem} />
             ))}
           </RecentlyViewed>

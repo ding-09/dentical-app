@@ -11,16 +11,25 @@ import StarRating from '../../components/star-rating';
 import Sort from '../../components/sort';
 import ReviewCard from './ReviewCard';
 import { MdBookmarkBorder, MdBookmark } from 'react-icons/md';
+import { useList } from '../../providers/ListProvider';
 
 const Details = () => {
   const [searchResult, setSearchResult] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // manage bookmark state
+  const [bookmarked, setBookmarked] = useState(false);
 
   // fetch data based on id from params
   let { id } = useParams();
 
+  // use context
+  const { addToList } = useList();
+
   const getData = async () => {
     const result = await axios.get(`http://localhost:8000/dentist/${id}`);
     setSearchResult(result.data.dentist);
+    setLoading(false);
   };
 
   // fetch details on page load
@@ -28,11 +37,43 @@ const Details = () => {
     getData();
   }, []);
 
-  // manage bookmark state
-  const [bookmarked, setBookmarked] = useState(false);
+  // store data after user leaves page
+  useEffect(() => {
+    return () => {
+      if (!loading) {
+        addToList(searchResult);
+      }
+    };
+  }, [loading]);
+
+  // store bookmark after user leaves page
+  useEffect(() => {
+    return () => {
+      if (!loading) {
+        console.log('storing bookmark...');
+        storeBookmark(
+          searchResult._id,
+          searchResult.title,
+          searchResult.address
+        );
+      }
+    };
+  }, [bookmarked]);
 
   const toggleBookmark = () => {
     setBookmarked(!bookmarked);
+  };
+
+  const storeBookmark = async (id, title, address) => {
+    // make a post request to backend
+    const res = await axios.post('http://localhost:8000/bookmark', {
+      id,
+      title,
+      address,
+    });
+    return res;
+    // to store bookmark in user
+    // get current user token
   };
 
   return searchResult ? (
@@ -45,10 +86,19 @@ const Details = () => {
             <StarRating />
             <a href='#reviews'>109 reviews</a>
           </div>
-          <button className='bookmark' onClick={toggleBookmark}>
+          {/* <button className='bookmark' onClick={toggleBookmark}>
             {bookmarked ? <MdBookmark /> : <MdBookmarkBorder />}
             <span>{bookmarked ? 'Bookmarked' : 'Bookmark'}</span>
-          </button>
+          </button> */}
+          <div className='bookmark-input'>
+            <input
+              type='checkbox'
+              name='bookmark'
+              id='bookmark'
+              onChange={toggleBookmark}
+            />
+            <label htmlFor='bookmark'>Bookmark</label>
+          </div>
         </div>
         <span className='phone'>{searchResult.phone}</span>
       </Header>

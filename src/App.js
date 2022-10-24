@@ -14,6 +14,7 @@ import Profile from './pages/profile';
 
 // context
 import { useAuth } from './providers/AuthProvider';
+import { ListProvider } from './providers/ListProvider';
 
 // const libraries = ['places'];
 const App = () => {
@@ -26,20 +27,28 @@ const App = () => {
   // use authContect
   const auth = useAuth();
   return (
-    <BrowserRouter>
-      <Header />
-      <main>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='results' element={<SearchResults />} />
-          <Route path='dentists' element={<SearchResults />} />
-          <Route path='dentist/:id' element={<Details />} />
-          <Route path='signin' element={auth.user ? <Profile /> : <SignIn />} />
-          <Route path='signup' element={<SignUp />} />
-          <Route path='profile' element={<Profile />} />
-        </Routes>
-      </main>
-    </BrowserRouter>
+    <ListProvider>
+      <BrowserRouter>
+        <Header />
+        <main>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='results' element={<SearchResults />} />
+            <Route path='dentists' element={<SearchResults />} />
+            <Route path='dentist/:id' element={<Details />} />
+            <Route
+              path='signin'
+              element={auth.user ? <Profile /> : <SignIn />}
+            />
+            <Route path='signup' element={<SignUp />} />
+            <Route
+              path='profile'
+              element={ <Profile /> }
+            />
+          </Routes>
+        </main>
+      </BrowserRouter>
+    </ListProvider>
   );
 };
 

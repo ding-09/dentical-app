@@ -10,12 +10,14 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import DentistCard from './DentistCard';
 import { useAuth } from '../../providers/AuthProvider';
+import { useList } from '../../providers/ListProvider';
 import { signOutUser } from '../../utils/user';
 
 const Profile = () => {
   const navigate = useNavigate();
 
   const { user, setUser } = useAuth();
+
   // if not authorized, route user to signin page
   useEffect(() => {
     if (!user) {
@@ -31,38 +33,46 @@ const Profile = () => {
     signOutUser();
   };
 
+  // get list of recently viewd from context
+  const { list } = useList();
+
   return (
-    <ProfilePage>
-      <Header>
-        <h2>Hi {user.name}</h2>
-        <Link to='/' onClick={handleSignOut}>
-          Sign out
-        </Link>
-      </Header>
-      <RecentlyViewed>
-        <SubHeader>
-          <h3>Recently viewed</h3>
-          <Link to='recently-viewed'>View all</Link>
-        </SubHeader>
-        <DentistCard />
-        <DentistCard />
-      </RecentlyViewed>
-      <Bookmarks>
+    <>
+      {user && (
+        <ProfilePage>
+          <Header>
+            <h2>Hi {user.name}</h2>
+            <Link to='/' onClick={handleSignOut}>
+              Sign out
+            </Link>
+          </Header>
+          <RecentlyViewed>
+            <SubHeader>
+              <h3>Recently viewed</h3>
+              <Link to='recently-viewed'>View all</Link>
+            </SubHeader>
+            {list.map((listItem) => (
+              <DentistCard listItem={listItem} />
+            ))}
+          </RecentlyViewed>
+          {/* <Bookmarks>
         <SubHeader>
           <h3>Bookmarks</h3>
           <Link to='bookmarks'>View all</Link>
         </SubHeader>
         <DentistCard bookmarked={true} />
         <DentistCard bookmarked={true} />
-      </Bookmarks>
-      <Reviews>
-        <SubHeader>
-          <h3>Reviews</h3>
-          <Link to='reviews'>View all</Link>
-        </SubHeader>
-        <h4 className='empty'>There are currently no reviews</h4>
-      </Reviews>
-    </ProfilePage>
+      </Bookmarks> */}
+          <Reviews>
+            <SubHeader>
+              <h3>Reviews</h3>
+              <Link to='reviews'>View all</Link>
+            </SubHeader>
+            <h4 className='empty'>There are currently no reviews</h4>
+          </Reviews>
+        </ProfilePage>
+      )}
+    </>
   );
 };
 

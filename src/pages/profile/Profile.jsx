@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ProfilePage,
   Header,
@@ -12,11 +12,13 @@ import DentistCard from './DentistCard';
 import { useAuth } from '../../providers/AuthProvider';
 import { useList } from '../../providers/ListProvider';
 import { signOutUser } from '../../utils/user';
+import axios from 'axios';
 
 const Profile = () => {
   const navigate = useNavigate();
 
   const { user, setUser } = useAuth();
+  const [bookmarks, setBookmarks] = useState([]);
 
   // if not authorized, route user to signin page
   useEffect(() => {
@@ -24,6 +26,20 @@ const Profile = () => {
       navigate('/signin');
     }
   }, []);
+
+  // fetch bookmarks
+  useEffect(() => {
+    getBookmarks();
+  }, []);
+
+  const getBookmarks = async () => {
+    const res = await axios.get('http://localhost:8000/bookmarks', {
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    setBookmarks(res.data);
+  };
 
   const handleSignOut = () => {
     // set user in context to null
@@ -51,18 +67,21 @@ const Profile = () => {
               <h3>Recently viewed</h3>
               <Link to='recently-viewed'>View all</Link>
             </SubHeader>
-            {Object.values(list).map((listItem) => (
-              <DentistCard listItem={listItem} />
-            ))}
+            {Object.values(list)
+              .slice(0, 2)
+              .map((listItem) => (
+                <DentistCard listItem={listItem} />
+              ))}
           </RecentlyViewed>
-          {/* <Bookmarks>
-        <SubHeader>
-          <h3>Bookmarks</h3>
-          <Link to='bookmarks'>View all</Link>
-        </SubHeader>
-        <DentistCard bookmarked={true} />
-        <DentistCard bookmarked={true} />
-      </Bookmarks> */}
+          <Bookmarks>
+            <SubHeader>
+              <h3>Bookmarks</h3>
+              <Link to='bookmarks'>View all</Link>
+            </SubHeader>
+            {bookmarks.slice(0, 2).map((listItem) => (
+              <DentistCard listItem={listItem} bookmarked={true} />
+            ))}
+          </Bookmarks>
           <Reviews>
             <SubHeader>
               <h3>Reviews</h3>
